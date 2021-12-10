@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import Leftbar from "./components/Leftbar";
+import Navbar from "./components/Navbar";
+import Rightbar from "./components/Rightbar";
+import Footer from "./components/Footer";
+import {Grid} from "@material-ui/core";
+import Add from "./components/Add";
+import {makeStyles} from "@material-ui/core/styles";
+const useStyles = makeStyles((theme)=>({
+  right:{
+    [theme.breakpoints.down("sm")]:{
+     display:"none",
+    },
+  },
+}));
 function App() {
+const classes=useStyles();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <Grid container>
+        <Grid item sm={2} xs={2}>
+          <Leftbar/>
+        </Grid>
+        <Grid item sm={7} xs={10}>
+          <Footer/>
+        </Grid>
+        <Grid item sm={3} className={classes.right}>
+          <Rightbar/>
+        </Grid>
+      </Grid>
+      <Add/>
     </div>
   );
 }
-
 export default App;
